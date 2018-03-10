@@ -149,3 +149,13 @@ test('property keys', function (t) {
   })
   t.end()
 })
+
+test('string property access', function (t) {
+  t.deepEqual(find(`
+    Buffer["isBuffer"]
+  `), {
+    identifiers: ['Buffer'],
+    properties: ['Buffer.isBuffer']
+  })
+  t.end()
+})
