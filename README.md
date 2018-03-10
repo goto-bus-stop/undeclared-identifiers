@@ -29,6 +29,19 @@ undeclaredIdentifiers(src)
 //   properties: ['Buffer.isBuffer'] }
 ```
 
+## API
+
+### `res = undeclaredIdentifiers(source, opts)`
+
+Find undeclared identifiers and properties that are used in the `source` string.
+
+`res` is an object with properties:
+
+  - `res.identifiers` - an array of variable names as strings.
+  - `res.properties` - an array of property names as .-separated strings, such as `'xyz.abc'`. These are the property accesses on the undeclared variables found in `res.identifiers`.
+
+Set `opts.properties` to false to only return identifiers.
+
 ## License
 
 [Apache-2.0](LICENSE.md)
