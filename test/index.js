@@ -125,3 +125,27 @@ test('object prototype names', function (t) {
   })
   t.end()
 })
+
+test('labels', function (t) {
+  t.deepEqual(find(`
+    a: a;
+    b: a;
+    c: a;
+  `), {
+    identifiers: ['a'],
+    properties: []
+  })
+  t.end()
+})
+
+test('property keys', function (t) {
+  t.deepEqual(find(`
+    ({ a: a,
+    b: a, [d]: a,
+    c: a, })
+  `), {
+    identifiers: ['a', 'd'],
+    properties: []
+  })
+  t.end()
+})

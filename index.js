@@ -44,7 +44,6 @@ var bindingVisitor = {
     if (has(state.undeclared, node.name)) return
     var parent = ancestors[ancestors.length - 2]
     if (parent.type === 'MemberExpression' && parent.property === node) return
-    if (parent.type === 'LabeledStatement' && parent.label === node) return
     for (var i = ancestors.length - 1; i >= 0; i--) {
       if (ancestors[i]._names !== undefined && ancestors[i]._names.indexOf(node.name) !== -1) {
         return
