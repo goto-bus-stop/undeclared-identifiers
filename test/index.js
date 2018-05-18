@@ -41,9 +41,10 @@ test('wildcard use of undeclared name', function (t) {
     new A()
     A.from()
     func(b)
+    C.from()
   `, { wildcard: true }), {
-    identifiers: ['A', 'b'],
-    properties: ['A.*', 'A.from', 'b.*']
+    identifiers: ['A', 'b', 'C'],
+    properties: ['A.*', 'A.from', 'b.*', 'C.from']
   })
   t.end()
 })

@@ -52,6 +52,7 @@ var bindingVisitor = {
 
     state.undeclared[node.name] = true
     if (state.wildcard &&
+        !(parent.type === 'MemberExpression' && parent.object === node) &&
         !(parent.type === 'VariableDeclarator' && parent.id === node) &&
         !(parent.type === 'AssignmentExpression' && parent.left === node)) {
       state.undeclaredProps[node.name + '.*'] = true
