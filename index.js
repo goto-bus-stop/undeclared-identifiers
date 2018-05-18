@@ -51,6 +51,11 @@ var bindingVisitor = {
     }
 
     state.undeclared[node.name] = true
+    if (state.wildcard &&
+        !(parent.type === 'VariableDeclarator' && parent.id === node) &&
+        !(parent.type === 'AssignmentExpression' && parent.left === node)) {
+      state.undeclaredProps[node.name + '.*'] = true
+    }
   },
   MemberExpression: function (node, state, ancestors) {
     if (!state.properties) return
@@ -68,14 +73,16 @@ var bindingVisitor = {
 module.exports = function findUndeclared (src, opts) {
   opts = xtend({
     identifiers: true,
-    properties: true
+    properties: true,
+    wildcard: false
   }, opts)
 
   var state = {
     undeclared: {},
     undeclaredProps: {},
     identifiers: opts.identifiers,
-    properties: opts.properties
+    properties: opts.properties,
+    wildcard: opts.wildcard
   }
   var ast = acorn.parse(src)
 

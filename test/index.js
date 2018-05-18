@@ -23,6 +23,19 @@ test('undeclared properties', function (t) {
   t.end()
 })
 
+test('wildcard use of undeclared name', function (t) {
+  t.deepEqual(find(`
+    function func () {}
+    new A()
+    A.from()
+    func(b)
+  `, { wildcard: true }), {
+    identifiers: ['A', 'b'],
+    properties: ['A.*', 'A.from', 'b.*']
+  })
+  t.end()
+})
+
 test('function names', function (t) {
   t.deepEqual(find(`
     function x () {

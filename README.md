@@ -42,6 +42,14 @@ Find undeclared identifiers and properties that are used in the `source` string.
 
 Set `opts.properties` to false to only return identifiers.
 
+When `opts.wildcard` is true, unknown uses of undeclared identifiers will be added to `res.properties` as `'VarName.*'`.
+
+```js
+undeclaredIdentifiers('Buffer(), Buffer.from()', { wildcard: true })
+// { identifiers: ['Buffer'],
+//   properties: ['Buffer.*', 'Buffer.from'] }
+```
+
 ## License
 
 [Apache-2.0](LICENSE.md)
