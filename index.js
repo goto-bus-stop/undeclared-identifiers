@@ -45,7 +45,7 @@ var bindingVisitor = {
     if (parent.type === 'MemberExpression' && parent.property === node) return
     if (!has(state.undeclared, node.name)) {
       for (var i = ancestors.length - 1; i >= 0; i--) {
-        if (ancestors[i]._names !== undefined && ancestors[i]._names.indexOf(node.name) !== -1) {
+        if (ancestors[i]._names !== undefined && has(ancestors[i]._names, node.name)) {
           return
         }
       }
@@ -116,11 +116,10 @@ function getScopeNode (parents, kind) {
 
 function declareNames (node, names) {
   if (node._names === undefined) {
-    node._names = names.map(function (id) { return id.name })
-    return
+    node._names = Object.create(null)
   }
   for (var i = 0; i < names.length; i++) {
-    node._names.push(names[i].name)
+    node._names[names[i].name] = true
   }
 }
 
