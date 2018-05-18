@@ -1,7 +1,7 @@
 {
   "name": "undeclared-identifiers",
   "description": "find undeclared identifiers and property accesses in a javascript file.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Renée Kooi <renee@kooi.me>",
   "bugs": {
     "url": "https://github.com/goto-bus-stop/undeclared-identifiers/issues"
@@ -10,7 +10,7 @@
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
     "nanobench": "^2.1.0",
-    "standard": "*",
+    "standard": "^11.0.0",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
   },
