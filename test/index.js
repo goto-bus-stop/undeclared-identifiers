@@ -49,6 +49,17 @@ test('wildcard use of undeclared name', function (t) {
   t.end()
 })
 
+test('wildcard use of undeclared name (different order)', function (t) {
+  t.deepEqual(find(`
+    A.from()
+    new A()
+  `, { wildcard: true }), {
+    identifiers: ['A'],
+    properties: ['A.from', 'A.*']
+  })
+  t.end()
+})
+
 test('function names', function (t) {
   t.deepEqual(find(`
     function x () {

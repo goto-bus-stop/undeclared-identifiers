@@ -41,16 +41,18 @@ var scopeVisitor = {
 var bindingVisitor = {
   Identifier: function (node, state, ancestors) {
     if (!state.identifiers) return
-    if (has(state.undeclared, node.name)) return
     var parent = ancestors[ancestors.length - 2]
     if (parent.type === 'MemberExpression' && parent.property === node) return
-    for (var i = ancestors.length - 1; i >= 0; i--) {
-      if (ancestors[i]._names !== undefined && ancestors[i]._names.indexOf(node.name) !== -1) {
-        return
+    if (!has(state.undeclared, node.name)) {
+      for (var i = ancestors.length - 1; i >= 0; i--) {
+        if (ancestors[i]._names !== undefined && ancestors[i]._names.indexOf(node.name) !== -1) {
+          return
+        }
       }
+
+      state.undeclared[node.name] = true
     }
 
-    state.undeclared[node.name] = true
     if (state.wildcard &&
         !(parent.type === 'MemberExpression' && parent.object === node) &&
         !(parent.type === 'VariableDeclarator' && parent.id === node) &&
