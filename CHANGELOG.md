@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.2
+* Fix wildcard use not being detected after property use. ([349d998](https://github.com/goto-bus-stop/undeclared-identifiers/commit/349d998559f83976ccd3b3d091e2b06f00ce4189))
+
 ## 1.1.1
 * Fix standard property access being detected as wildcards. ([029a0b7](https://github.com/goto-bus-stop/undeclared-identifiers/commit/029a0b773a7a4d2402a6de19c8c8693407f8da63))
 
