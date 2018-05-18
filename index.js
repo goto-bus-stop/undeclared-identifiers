@@ -84,7 +84,11 @@ module.exports = function findUndeclared (src, opts) {
     properties: opts.properties,
     wildcard: opts.wildcard
   }
-  var ast = acorn.parse(src)
+
+  // Parse if `src` is not already an AST.
+  var ast = typeof src === 'object' && src !== null && typeof src.type === 'string'
+    ? src
+    : acorn.parse(src)
 
   walk.ancestor(ast, scopeVisitor)
   walk.ancestor(ast, bindingVisitor, walk.base, state)

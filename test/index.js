@@ -1,4 +1,5 @@
 var test = require('tape')
+var acorn = require('acorn-node')
 var find = require('../')
 
 test('undeclared variables', function (t) {
@@ -6,6 +7,17 @@ test('undeclared variables', function (t) {
     var a, b
     a, b, c
   `), {
+    identifiers: ['c'],
+    properties: []
+  })
+  t.end()
+})
+
+test('pass in a parsed ast', function (t) {
+  t.deepEqual(find(acorn.parse(`
+    var a, b
+    a, b, c
+  `)), {
     identifiers: ['c'],
     properties: []
   })

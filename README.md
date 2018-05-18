@@ -33,7 +33,7 @@ undeclaredIdentifiers(src)
 
 ### `res = undeclaredIdentifiers(source, opts)`
 
-Find undeclared identifiers and properties that are used in the `source` string.
+Find undeclared identifiers and properties that are used in the `source`. `source` can be an AST or a source string that will be parsed using [acorn-node](https://github.com/browserify/acorn-node).
 
 `res` is an object with properties:
 
