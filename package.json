@@ -11,7 +11,7 @@
     "lodash": "^4.17.5",
     "nanobench": "^2.1.0",
     "standard": "^11.0.0",
-    "tap-spec": "^4.0.2",
+    "tap-spec": "^5.0.0",
     "tape": "^4.0.0",
     "three": "^0.92.0"
   },
