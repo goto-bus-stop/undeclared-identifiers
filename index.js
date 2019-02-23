@@ -30,6 +30,12 @@ var scopeVisitor = {
   FunctionExpression: visitFunction,
   FunctionDeclaration: visitFunction,
   ArrowFunctionExpression: visitFunction,
+  ClassDeclaration: function (node, state, ancestors) {
+    var parent = getScopeNode(ancestors, 'const')
+    if (node.id) {
+      declareNames(parent, [node.id])
+    }
+  },
   ImportDeclaration: function (node, state, ancestors) {
     declareNames(ancestors[0] /* root */, getAssignedIdentifiers(node))
   },
@@ -44,6 +50,7 @@ var bindingVisitor = {
     var parent = ancestors[ancestors.length - 1]
     if (parent.type === 'MemberExpression' && parent.property === node) return
     if (parent.type === 'Property' && !parent.computed && parent.key === node) return
+    if (parent.type === 'MethodDefinition' && !parent.computed && parent.key === node) return
     if (parent.type === 'LabeledStatement' && parent.label === node) return
     if (!has(state.undeclared, node.name)) {
       for (var i = ancestors.length - 1; i >= 0; i--) {
