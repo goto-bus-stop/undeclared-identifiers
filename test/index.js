@@ -90,6 +90,21 @@ test('class names', function (t) {
     identifiers: [],
     properties: []
   })
+  t.deepEqual(find(`
+    class X extends Y {}
+    new X()
+  `), {
+    identifiers: ['Y'],
+    properties: []
+  })
+  t.deepEqual(find(`
+    class Y {}
+    class X extends Y {}
+    new X()
+  `), {
+    identifiers: [],
+    properties: []
+  })
   t.end()
 })
 
