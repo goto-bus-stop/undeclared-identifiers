@@ -122,6 +122,26 @@ test('class methods', function (t) {
   t.end()
 })
 
+test('super', function (t) {
+  t.deepEqual(find(`
+    class X extends Y {
+      constructor() { super() }
+    }
+  `), {
+    identifiers: ['Y'],
+    properties: []
+  })
+  t.deepEqual(find(`
+    class X {
+      foo() { super.foo }
+    }
+  `), {
+    identifiers: [],
+    properties: []
+  })
+  t.end()
+})
+
 test('scope', function (t) {
   t.deepEqual(find(`
     function y () {
