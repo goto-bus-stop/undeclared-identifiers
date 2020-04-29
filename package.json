@@ -12,7 +12,7 @@
     "nanobench": "^2.1.0",
     "standard": "^14.3.1",
     "tap-spec": "^5.0.0",
-    "tape": "^4.0.0",
+    "tape": "^5.0.0",
     "three": "^0.92.0"
   },
   "homepage": "https://github.com/goto-bus-stop/undeclared-identifiers",
