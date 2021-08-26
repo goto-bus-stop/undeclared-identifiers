@@ -1,4 +1,3 @@
-var xtend = require('xtend')
 var acorn = require('acorn-node')
 var dash = require('dash-ast')
 var getAssignedIdentifiers = require('get-assigned-identifiers')
@@ -83,11 +82,12 @@ var bindingVisitor = {
 }
 
 module.exports = function findUndeclared (src, opts) {
-  opts = xtend({
+  opts = {
     identifiers: true,
     properties: true,
-    wildcard: false
-  }, opts)
+    wildcard: false,
+    ...opts
+  }
 
   var state = {
     undeclared: {},
