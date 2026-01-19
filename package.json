@@ -7,7 +7,7 @@
     "url": "https://github.com/goto-bus-stop/undeclared-identifiers/issues"
   },
   "devDependencies": {
-    "jquery": "^3.3.1",
+    "jquery": "^4.0.0",
     "lodash": "^4.17.5",
     "nanobench": "^3.0.0",
     "standard": "^17.0.0",
